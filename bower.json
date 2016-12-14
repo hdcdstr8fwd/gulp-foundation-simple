@@ -1,0 +1,22 @@
+{
+  "name": "simplestarter",
+  "description": "grunt foundation simple starter",
+  "main": "index.js",
+  "authors": [
+    "Straightfwd"
+  ],
+  "license": "ISC",
+  "homepage": "www.straightfwd.co.uk",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "^4.7.0",
+    "foundation-sites": "^6.2.4"
+  }
+}
