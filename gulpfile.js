@@ -12,7 +12,6 @@ var watch = require('gulp-watch');
 gulp.task('minify-css', function() {
 	return gulp.src([
 		'bower_components/foundation-sites/dist/foundation.css', 
-		'bower_components/font-awesome/css/font-awesome.js',
 		'src/css/*.css'
 	])
 	.pipe(concat('main.css'))
@@ -34,22 +33,14 @@ gulp.task('scripts', function() {
 	.pipe(gulp.dest('app/js'));
 });
 
-gulp.task('rebuild', ['minify-css', 'scripts'], function(){
-	serve.reload();
-});
-
-//Watch for file changes and reload the server.
-gulp.task('watch', function () {
-	gulp.watch(["app/*.html", "app/css/*.min.css", "app/js/*.js"], ['rebuild']);
-});
-
 //Define Server Task.
-gulp.task('serve', ['scripts', 'minify-css'],  function() {
-	    serve({
-	        server: {
-	            baseDir: 'app/'
-	        }
-	    });	
+gulp.task('serve',  function() {
+    serve.init({
+        server: {
+            baseDir: "app/"
+        }
+    });
+	gulp.watch("app/*.html").on('change', serve.reload);
 });
 
-gulp.task('default', ['serve', 'watch']);
+gulp.task('default', ['minify-css', 'scripts']);
